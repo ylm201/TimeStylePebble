@@ -4,7 +4,7 @@ var weather = require('./weather');
 var CONFIG_VERSION = 8;
 // var BASE_CONFIG_URL = 'http://localhost:4000/';
 // var BASE_CONFIG_URL = 'http://192.168.0.108:40000/';
-var BASE_CONFIG_URL = 'http://freakified.github.io/TimeStylePebble/';
+var BASE_CONFIG_URL = 'https://freakified.github.io/TimeStylePebble/';
 // var BASE_CONFIG_URL = 'http://192.168.0.106:4000/';
 
 // Listen for when the watchface is opened
@@ -39,33 +39,33 @@ Pebble.addEventListener('appmessage',
 );
 
 Pebble.addEventListener('showConfiguration', function(e) {
-  // var bwConfigURL    = BASE_CONFIG_URL + 'config_bw.html';
-  // var colorConfigURL = BASE_CONFIG_URL + 'config_color.html';
-  // var roundConfigURL = BASE_CONFIG_URL + 'config_color_round.html';
+    var bwConfigURL    = BASE_CONFIG_URL + 'config_bw.html';
+    var colorConfigURL = BASE_CONFIG_URL + 'config_color.html';
+    var roundConfigURL = BASE_CONFIG_URL + 'config_color_round.html';
 
-  // var versionString = '?appversion=' + CONFIG_VERSION;
+    var versionString = '?appversion=' + CONFIG_VERSION;
 
-  // if(Pebble.getActiveWatchInfo) {
-  //   try {
-  //     watch = Pebble.getActiveWatchInfo();
-  //   } catch(err) {
-  //     watch = {
-  //       platform: "basalt"
-  //     };
-  //   }
-  // } else {
-  //   watch = {
-  //     platform: "aplite"
-  //   };
-  // }
+    if(Pebble.getActiveWatchInfo) {
+      try {
+        watch = Pebble.getActiveWatchInfo();
+      } catch(err) {
+        watch = {
+          platform: "basalt"
+        };
+      }
+    } else {
+      watch = {
+        platform: "aplite"
+      };
+    }
 
-  // if(watch.platform == "aplite"){
-  //   Pebble.openURL(bwConfigURL + versionString);
-  // } else if(watch.platform == "chalk") {
-  //   Pebble.openURL(roundConfigURL + versionString);
-  // } else {
-  //   Pebble.openURL(colorConfigURL + versionString);
-  // }
+    if(watch.platform == "aplite"){
+      Pebble.openURL(bwConfigURL + versionString);
+    } else if(watch.platform == "chalk") {
+      Pebble.openURL(roundConfigURL + versionString);
+    } else {
+      Pebble.openURL(colorConfigURL + versionString);
+    }
 
   Pebble.openURL('http://www.example.com');
 });

@@ -22,6 +22,8 @@ static ClockDigit clockDigits[4];
 // try to randomize when watches call the weather API
 static uint8_t weatherRefreshMinute;
 
+static AppTimer *secondary_display_timer;
+
 void update_clock();
 void redrawScreen();
 void tick_handler(struct tm *tick_time, TimeUnits units_changed);
@@ -63,7 +65,6 @@ void update_clock() {
     current_font = FONT_SETTING_DEFAULT;
   }
 
-  // use the blank image for the leading hour digit if needed
   if(globalSettings.showLeadingZero || hour / 10 != 0) {
     ClockDigit_setNumber(&clockDigits[0], hour / 10, current_font);
   } else {
@@ -80,7 +81,8 @@ void update_clock() {
 
   ClockDigit_setNumber(&clockDigits[2], timeInfo->tm_min  / 10, current_font);
   ClockDigit_setNumber(&clockDigits[3], timeInfo->tm_min  % 10, current_font);
-
+  // use the blank image for the leading hour digit if needed
+  
   Sidebar_updateTime(timeInfo);
 }
 
@@ -125,7 +127,7 @@ void redrawScreen() {
 static void main_window_load(Window *window) {
 
   #ifdef PBL_ROUND
-    GPoint digitPoints[4] = {GPoint(40, 17), GPoint(90, 17), GPoint(40, 92), GPoint(90, 92)};
+    GPoint digitPoints[4] = {GPoint(41, 18), GPoint(91, 18), GPoint(41, 91), GPoint(91, 91)};
   #else
     GPoint digitPoints[4] = {GPoint(7, 7), GPoint(60, 7), GPoint(7, 90), GPoint(60, 90)};
   #endif
@@ -227,6 +229,22 @@ static void app_focus_changed(bool focused) {
   }
 }
 
+static void secondary_timer_cb(){
+  if(secondary_display_timer != NULL){
+    Sidebar_draw_origin();
+    secondary_display_timer = NULL;
+    update_clock();
+  }  
+}
+
+static void watchTapped(AccelAxisType axis, int32_t direction) {
+  if(secondary_display_timer == NULL){
+    update_clock();
+    secondary_display_timer = app_timer_register(5 * 1000, secondary_timer_cb, NULL);
+    Sidebar_draw_second();
+  }
+}
+
 static void init() {
   setlocale(LC_ALL, "");
 
@@ -273,6 +291,9 @@ static void init() {
   // register with battery service
   battery_state_service_subscribe(batteryStateChanged);
 
+  // register with tap 
+  accel_tap_service_subscribe(watchTapped);
+
   // set up focus change handlers
   app_focus_service_subscribe_handlers((AppFocusHandlers){
     .did_focus = app_focus_changed,
@@ -290,6 +311,7 @@ static void deinit() {
 
   bluetooth_connection_service_unsubscribe();
   battery_state_service_unsubscribe();
+  accel_tap_service_unsubscribe();
 }
 
 int main(void) {

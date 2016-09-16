@@ -22,6 +22,7 @@ void updateRectSidebar(Layer *l, GContext* ctx);
   void drawRoundSidebar(GContext* ctx, GRect bgBounds, SidebarWidgetType widgetType, int widgetXOffset);
 #endif
 
+bool isSecondaryDisplay=false;
 Layer* sidebarLayer;
 
 #ifdef PBL_ROUND
@@ -86,6 +87,16 @@ void Sidebar_redraw() {
   #ifdef PBL_ROUND
     layer_mark_dirty(sidebarLayer2);
   #endif
+}
+
+void Sidebar_draw_second() {
+  isSecondaryDisplay=true;
+  Sidebar_redraw();
+}
+
+void Sidebar_draw_origin() {
+  isSecondaryDisplay=false;
+  Sidebar_redraw();
 }
 
 void Sidebar_updateTime(struct tm* timeInfo) {
@@ -167,6 +178,10 @@ void updateRoundSidebarRight(Layer *l, GContext* ctx) {
   bool showAutoBattery = isAutoBatteryShown();
 
   SidebarWidgetType displayWidget = globalSettings.widgets[2];
+  
+  if(isSecondaryDisplay){
+    displayWidget=WEATHER_FORECAST_TODAY;   
+  }
 
   if((showAutoBattery || showDisconnectIcon) && getReplacableWidget() == 2) {
     if(showAutoBattery) {
@@ -194,7 +209,9 @@ void updateRoundSidebarLeft(Layer *l, GContext* ctx) {
       displayWidget = BLUETOOTH_DISCONNECT;
     }
   }
-
+  if(isSecondaryDisplay){
+    displayWidget=DATE;   
+  }
   drawRoundSidebar(ctx, bgBounds, displayWidget, 7);
 }
 

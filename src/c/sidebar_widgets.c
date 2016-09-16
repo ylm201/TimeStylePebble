@@ -86,7 +86,9 @@ void Beats_draw(GContext* ctx, int yPosition);
 void SidebarWidgets_init() {
   // load fonts
   smSidebarFont = fonts_get_system_font(FONT_KEY_GOTHIC_14_BOLD);
-  mdSidebarFont = fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD);
+  mdSidebarFont = fonts_load_custom_font(
+                          resource_get_handle(RESOURCE_ID_FONT_KEY_MONACO_15));
+                          //fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD);
   lgSidebarFont = fonts_get_system_font(FONT_KEY_GOTHIC_24_BOLD);
 
   // load the sidebar graphics
@@ -363,13 +365,13 @@ void DateWidget_draw(GContext* ctx, int yPosition) {
   yPosition -= (globalSettings.useLargeFonts) ? 10 : 7;
 
   // first draw the day name
-  graphics_draw_text(ctx,
-                     currentDayName,
-                     currentSidebarFont,
-                     GRect(-5 + SidebarWidgets_xOffset, yPosition, 40, 20),
-                     GTextOverflowModeFill,
-                     GTextAlignmentCenter,
-                     NULL);
+  //graphics_draw_text(ctx,
+  //                   currentDayName,
+  //                   currentSidebarFont,
+  //                   GRect(-5 + SidebarWidgets_xOffset, yPosition, 40, 20),
+  //                   GTextOverflowModeFill,
+  //                   GTextAlignmentCenter,
+  //                   NULL);
 
   // next, draw the date background
   // (an image in normal mode, a rectangle in large font mode)
@@ -380,7 +382,7 @@ void DateWidget_draw(GContext* ctx, int yPosition) {
     }
   } else {
     graphics_context_set_fill_color(ctx, globalSettings.iconStrokeColor);
-    graphics_fill_rect(ctx, GRect(2 + SidebarWidgets_xOffset, yPosition + 30, 26, 22), 2, GCornersAll);
+    graphics_fill_rect(ctx, GRect(2 + SidebarWidgets_xOffset, yPosition + 34, 26, 22), 2, GCornersAll);
 
     graphics_context_set_fill_color(ctx, globalSettings.iconFillColor);
     graphics_fill_rect(ctx, GRect(4 + SidebarWidgets_xOffset, yPosition + 32, 22, 18), 0, GCornersAll);
@@ -390,7 +392,7 @@ void DateWidget_draw(GContext* ctx, int yPosition) {
   graphics_context_set_text_color(ctx, globalSettings.iconStrokeColor);
 
   int yOffset = 0;
-  yOffset = globalSettings.useLargeFonts ? 24 : 26;
+  yOffset = globalSettings.useLargeFonts ? 26 : 29;
 
   graphics_draw_text(ctx,
                      currentDayNum,
@@ -402,21 +404,21 @@ void DateWidget_draw(GContext* ctx, int yPosition) {
 
 
    // switch back to normal color for the rest
-  graphics_context_set_text_color(ctx, globalSettings.sidebarTextColor);
-
-  // don't draw the month if we're in compact mode
-  if(!SidebarWidgets_useCompactMode) {
-    yOffset = globalSettings.useLargeFonts ? 48 : 47;
-
-    graphics_draw_text(ctx,
-                       currentMonth,
-                       currentSidebarFont,
-                       GRect(-5 + SidebarWidgets_xOffset, yPosition + yOffset, 40, 20),
-                       GTextOverflowModeFill,
-                       GTextAlignmentCenter,
-                       NULL);
-  }
-
+  //graphics_context_set_text_color(ctx, globalSettings.sidebarTextColor);
+  //
+  //// don't draw the month if we're in compact mode
+  //if(!SidebarWidgets_useCompactMode) {
+  //  yOffset = globalSettings.useLargeFonts ? 48 : 47;
+  //
+  //  graphics_draw_text(ctx,
+  //                     currentMonth,
+  //                     currentSidebarFont,
+  //                     GRect(-5 + SidebarWidgets_xOffset, yPosition + yOffset, 40, 20),
+  //                     GTextOverflowModeFill,
+  //                     GTextAlignmentCenter,
+  //                     NULL);
+  //}
+  //
 
 }
 
@@ -601,7 +603,7 @@ void WeatherForecast_draw(GContext* ctx, int yPosition) {
                          GTextAlignmentCenter,
                          NULL);
 
-      graphics_fill_rect(ctx, GRect(3 + SidebarWidgets_xOffset, 8 + yPosition + 37, 24, 1), 0, GCornerNone);
+      graphics_fill_rect(ctx, GRect(3 + SidebarWidgets_xOffset, 8 + yPosition + 34, 24, 1), 0, GCornerNone);
 
       snprintf(tempString, sizeof(tempString), " %d°", lowTemp);
 
@@ -822,7 +824,7 @@ void Steps_draw(GContext* ctx, int yPosition) {
   graphics_draw_text(ctx,
                      steps_text,
                      (use_small_font) ? smSidebarFont : mdSidebarFont,
-                     GRect(-2 + SidebarWidgets_xOffset, yPosition + 13, 35, 20),
+                     GRect(-2 + SidebarWidgets_xOffset, yPosition + 14, 35, 20),
                      GTextOverflowModeFill,
                      GTextAlignmentCenter,
                      NULL);

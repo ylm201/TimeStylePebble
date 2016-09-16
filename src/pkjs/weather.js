@@ -1,7 +1,7 @@
 /* general utility stuff related to weather */
 
 var weatherProviders = {
-  'owm'          : require('./weather_owm'),
+  'owm'          : require('./thinkpage'),
   // 'forecast'     : require('weather_forecast'),
   'wunderground' : require('./weather_wunderground')
 };
@@ -123,7 +123,7 @@ function locationSuccess(pos) {
 }
 
 function isForecastNeeded() {
-  var enableForecast = window.localStorage.getItem('enable_forecast');
+  var enableForecast = 'yes';
   var lastForecastTime = window.localStorage.getItem('last_forecast_time');
   var forecastAge = Date.now() - lastForecastTime;
 
