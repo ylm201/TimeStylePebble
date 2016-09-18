@@ -1,7 +1,7 @@
 /* general utility stuff related to weather */
 
 var weatherProviders = {
-  'owm'          : require('./thinkpage'),
+  'owm'          : require('./caiyun'),
   // 'forecast'     : require('weather_forecast'),
   'wunderground' : require('./weather_wunderground')
 };

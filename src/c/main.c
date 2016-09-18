@@ -164,7 +164,7 @@ void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
 
   // every 30 minutes, request new weather data
   if(!globalSettings.disableWeather) {
-    if(tick_time->tm_min == weatherRefreshMinute && tick_time->tm_sec == 0) {
+    if(tick_time->tm_min % 30 == weatherRefreshMinute && tick_time->tm_sec == 0) {
       messaging_requestNewWeatherData();
     }
   }
@@ -250,7 +250,7 @@ static void init() {
 
   srand(time(NULL));
 
-  weatherRefreshMinute = rand() % 60;
+  weatherRefreshMinute = rand() % 30;
 
   // init settings
   Settings_init();
