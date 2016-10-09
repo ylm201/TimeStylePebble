@@ -19,7 +19,7 @@ void updateRectSidebar(Layer *l, GContext* ctx);
   void updateRoundSidebarRight(Layer *l, GContext* ctx);
 
   // shared drawing stuff between all layers
-  void drawRoundSidebar(GContext* ctx, GRect bgBounds, SidebarWidgetType widgetType, int widgetXOffset);
+  void drawRoundSidebar(GContext* ctx, Layer *l, GRect bgBounds, SidebarWidgetType widgetType, int widgetXOffset);
 #endif
 
 bool isSecondaryDisplay=false;
@@ -171,6 +171,7 @@ int getReplacableWidget() {
 #ifdef PBL_ROUND
 
 void updateRoundSidebarRight(Layer *l, GContext* ctx) {
+  APP_LOG(APP_LOG_LEVEL_DEBUG,"updateing updateRoundSidebarRight...");
   GRect bounds = layer_get_bounds(l);
   GRect bgBounds = GRect(bounds.origin.x, bounds.size.h / -2, bounds.size.h * 2, bounds.size.h * 2);
 
@@ -191,7 +192,8 @@ void updateRoundSidebarRight(Layer *l, GContext* ctx) {
     }
   }
 
-  drawRoundSidebar(ctx, bgBounds, displayWidget, 3);
+  drawRoundSidebar(ctx, l, bgBounds, displayWidget, 3);
+  APP_LOG(APP_LOG_LEVEL_DEBUG,"updated updateRoundSidebarRight...");
 }
 
 void updateRoundSidebarLeft(Layer *l, GContext* ctx) {
@@ -212,10 +214,12 @@ void updateRoundSidebarLeft(Layer *l, GContext* ctx) {
   if(isSecondaryDisplay){
     displayWidget=DATE;   
   }
-  drawRoundSidebar(ctx, bgBounds, displayWidget, 7);
+  drawRoundSidebar(ctx, l, bgBounds, displayWidget, 7);
 }
 
-void drawRoundSidebar(GContext* ctx, GRect bgBounds, SidebarWidgetType widgetType, int widgetXOffset) {
+void drawRoundSidebar(GContext* ctx, Layer *l, GRect bgBounds, SidebarWidgetType widgetType, int widgetXOffset) {
+  //remove child layers and redraw
+  layer_remove_child_layers(l);
   SidebarWidgets_updateFonts();
 
   graphics_context_set_fill_color(ctx, globalSettings.sidebarColor);
@@ -232,7 +236,7 @@ void drawRoundSidebar(GContext* ctx, GRect bgBounds, SidebarWidgetType widgetTyp
 
   // calculate center position of the widget
   int widgetPosition = bgBounds.size.h / 4 - widget.getHeight() / 2;
-  widget.draw(ctx, widgetPosition);
+  widget.draw(ctx, l, widgetPosition);
 }
 #endif
 
@@ -241,6 +245,8 @@ void drawRoundSidebar(GContext* ctx, GRect bgBounds, SidebarWidgetType widgetTyp
 
 
 void updateRectSidebar(Layer *l, GContext* ctx) {
+  layer_remove_child_layers(l);
+
   SidebarWidgets_updateFonts();
 
   graphics_context_set_fill_color(ctx, globalSettings.sidebarColor);
@@ -283,8 +289,8 @@ void updateRectSidebar(Layer *l, GContext* ctx) {
   int middleWidgetPos = ((lowerWidgetPos - displayWidgets[1].getHeight()) + (topWidgetPos + displayWidgets[0].getHeight())) / 2;
 
   // draw the widgets
-  displayWidgets[0].draw(ctx, topWidgetPos);
-  displayWidgets[1].draw(ctx, middleWidgetPos);
-  displayWidgets[2].draw(ctx, lowerWidgetPos);
+  displayWidgets[0].draw(ctx, l, topWidgetPos);
+  displayWidgets[1].draw(ctx, l, middleWidgetPos);
+  displayWidgets[2].draw(ctx, l, lowerWidgetPos);
 
 }

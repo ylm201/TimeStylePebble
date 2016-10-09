@@ -214,49 +214,49 @@
                 "type": "bitmap"
             },
             {
-                "file": "data/WEATHER_GENERIC.pdc",
+                "file": "images/weather/CLEAR_DAY.png",
                 "name": "WEATHER_GENERIC",
-                "type": "raw"
+                "type": "bitmap"
             },
             {
-                "file": "data/THUNDERSTORM.pdc",
+                "file": "images/weather/CLEAR_DAY.png",
                 "name": "WEATHER_THUNDERSTORM",
-                "type": "raw"
+                "type": "bitmap"
             },
             {
-                "file": "data/RAINING_AND_SNOWING.pdc",
+                "file": "images/weather/SLEET.png",
                 "name": "WEATHER_RAINING_AND_SNOWING",
-                "type": "raw"
+                "type": "bitmap"
             },
             {
-                "file": "data/PARTLY_CLOUDY_NIGHT.pdc",
+                "file": "images/weather/PARTLY_CLOUDY_NIGHT.png",
                 "name": "WEATHER_PARTLY_CLOUDY_NIGHT",
-                "type": "raw"
+                "type": "bitmap"
             },
             {
-                "file": "data/PARTLY_CLOUDY.pdc",
+                "file": "images/weather/PARTLY_CLOUDY.png",
                 "name": "WEATHER_PARTLY_CLOUDY",
-                "type": "raw"
+                "type": "bitmap"
             },
             {
-                "file": "data/LIGHT_SNOW.pdc",
+                "file": "images/weather/LIGHT_SNOW.png",
                 "name": "WEATHER_LIGHT_SNOW",
-                "type": "raw"
+                "type": "bitmap"
             },
             {
-                "file": "data/LIGHT_RAIN.pdc",
+                "file": "images/weather/LIGHT_RAIN.png",
                 "name": "WEATHER_LIGHT_RAIN",
-                "type": "raw"
+                "type": "bitmap"
             },
             {
-                "file": "data/HEAVY_SNOW.pdc",
+                "file": "images/weather/HEAVY_SNOW.png",
                 "name": "WEATHER_HEAVY_SNOW",
-                "type": "raw"
+                "type": "bitmap"
             },
             {
-                "file": "data/HEAVY_RAIN.pdc",
+                "file": "images/weather/HEAVY_RAIN.png",
                 "name": "WEATHER_HEAVY_RAIN",
-                "type": "raw"
+                "type": "bitmap"
             },
             {
                 "file": "data/DISCONNECTED.pdc",
@@ -269,20 +269,31 @@
                 "type": "raw"
             },
             {
-                "file": "data/CLOUDY_DAY.pdc",
+                "file": "images/weather/CLOUDY.png",
                 "name": "WEATHER_CLOUDY",
-                "type": "raw"
+                "type": "bitmap"
             },
             {
-                "file": "data/CLEAR_NIGHT.pdc",
+                "file": "images/weather/CLEAR_NIGHT.png",
                 "name": "WEATHER_CLEAR_NIGHT",
-                "type": "raw"
+                "type": "bitmap"
             },
             {
-                "file": "data/CLEAR_DAY.pdc",
+                "file": "images/weather/CLEAR_DAY.png",
                 "name": "WEATHER_CLEAR_DAY",
-                "type": "raw"
+                "type": "bitmap"
             },
+             {
+                "file": "images/weather/HAZE.png",
+                "name": "WEATHER_HAZE",
+                "type": "bitmap"
+            },
+             {
+                "file": "images/weather/FOG.png",
+                "name": "WEATHER_FOG",
+                "type": "bitmap"
+            },
+
             {
                 "file": "data/BATTERY_CHARGE.pdc",
                 "name": "BATTERY_CHARGE",

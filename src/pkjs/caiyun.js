@@ -14,7 +14,9 @@ function getWeatherCode(conditionCode){
 			PARTLY_CLOUDY_NIGHT:weatherCommon.icons.PARTLY_CLOUDY_NIGHT,//3 Fair
 			CLOUDY:weatherCommon.icons.CLOUDY_DAY,//4 Cloudy
 			RAIN:weatherCommon.icons.LIGHT_RAIN,
-		  SNOW:weatherCommon.icons.HEAVY_SNOW
+		  SNOW:weatherCommon.icons.HEAVY_SNOW,
+      FOG:weatherCommon.icons.FOG,
+      HAZE:weatherCommon.icons.HAZE
 		};
 	}
 	return WEATHER_CONDITION[conditionCode];

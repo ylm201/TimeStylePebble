@@ -4,8 +4,8 @@
 WeatherInfo Weather_weatherInfo;
 WeatherForecastInfo Weather_weatherForecast;
 
-GDrawCommandImage* Weather_currentWeatherIcon;
-GDrawCommandImage* Weather_forecastWeatherIcon;
+GBitmap*  Weather_currentWeatherIcon;
+GBitmap*  Weather_forecastWeatherIcon;
 
 uint32_t getConditionIcon(WeatherCondition conditionCode) {
   uint32_t iconToLoad;
@@ -44,6 +44,12 @@ uint32_t getConditionIcon(WeatherCondition conditionCode) {
     case THUNDERSTORM:
       iconToLoad = RESOURCE_ID_WEATHER_THUNDERSTORM;
       break;
+     case FOG:
+      iconToLoad = RESOURCE_ID_WEATHER_FOG;
+      break;
+     case HAZE:
+      iconToLoad = RESOURCE_ID_WEATHER_HAZE;
+      break;
     default:
       iconToLoad = RESOURCE_ID_WEATHER_GENERIC;
       break;
@@ -57,8 +63,8 @@ void Weather_setCurrentCondition(int conditionCode) {
   uint32_t currentWeatherIcon = getConditionIcon(conditionCode);
 
   // ok, now load the new icon:
-  gdraw_command_image_destroy(Weather_currentWeatherIcon);
-  Weather_currentWeatherIcon = gdraw_command_image_create_with_resource(currentWeatherIcon);
+  gbitmap_destroy(Weather_currentWeatherIcon);
+  Weather_currentWeatherIcon = gbitmap_create_with_resource(currentWeatherIcon);
 
   Weather_weatherInfo.currentIconResourceID = currentWeatherIcon;
 }
@@ -66,8 +72,8 @@ void Weather_setCurrentCondition(int conditionCode) {
 void Weather_setForecastCondition(int conditionCode) {
   uint32_t forecastWeatherIcon = getConditionIcon(conditionCode);
 
-  gdraw_command_image_destroy(Weather_forecastWeatherIcon);
-  Weather_forecastWeatherIcon = gdraw_command_image_create_with_resource(forecastWeatherIcon);
+  gbitmap_destroy(Weather_forecastWeatherIcon);
+  Weather_forecastWeatherIcon = gbitmap_create_with_resource(forecastWeatherIcon);
 
   Weather_weatherForecast.forecastIconResourceID = forecastWeatherIcon;
 }
@@ -81,7 +87,7 @@ void Weather_init() {
 
     Weather_weatherInfo = w;
 
-    Weather_currentWeatherIcon = gdraw_command_image_create_with_resource(w.currentIconResourceID);
+    Weather_currentWeatherIcon = gbitmap_create_with_resource(w.currentIconResourceID);
 
   } else {
 
@@ -98,7 +104,7 @@ void Weather_init() {
 
     Weather_weatherForecast = w;
 
-    Weather_forecastWeatherIcon = gdraw_command_image_create_with_resource(w.forecastIconResourceID);
+    Weather_forecastWeatherIcon = gbitmap_create_with_resource(w.forecastIconResourceID);
 
   } else {
     // printf("forecast key does not exist!");
@@ -120,6 +126,6 @@ void Weather_deinit() {
   Weather_saveData();
 
   // free memory
-  gdraw_command_image_destroy(Weather_currentWeatherIcon);
-  gdraw_command_image_destroy(Weather_forecastWeatherIcon);
+  gbitmap_destroy(Weather_currentWeatherIcon);
+  gbitmap_destroy(Weather_forecastWeatherIcon);
 }

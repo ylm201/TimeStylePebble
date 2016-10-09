@@ -43,7 +43,7 @@ typedef struct {
   /*
    * Draws the widget using the provided graphics context
    */
-  void (*draw)(GContext* ctx, int yPosition);
+  void (*draw)(GContext* ctx, Layer* l, int yPosition);
 } SidebarWidget;
 
 void SidebarWidgets_init();
@@ -51,3 +51,4 @@ void SidebarWidgets_deinit();
 SidebarWidget getSidebarWidgetByType(SidebarWidgetType type);
 void SidebarWidgets_updateFonts();
 void SidebarWidgets_updateTime(struct tm* timeInfo);
+void SidebarWidgets_clean();

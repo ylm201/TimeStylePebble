@@ -2,7 +2,6 @@
 
 var weatherProviders = {
   'owm'          : require('./caiyun'),
-  // 'forecast'     : require('weather_forecast'),
   'wunderground' : require('./weather_wunderground')
 };
 
@@ -26,7 +25,9 @@ var WeatherIcons = {
   PARTLY_CLOUDY       : 8,
   RAINING_AND_SNOWING : 9,
   THUNDERSTORM        : 10,
-  WEATHER_GENERIC     : 11
+  FOG                 : 11,
+  HAZE                : 12,
+  WEATHER_GENERIC     : 13
 };
 
 
