@@ -1,13 +1,13 @@
 {
-  "name": "timestyle-pebble",
+  "name": "timestyle-pebble-ylm",
   "author": "Freakified",
   "version": "6.4.0",
   "keywords": ["pebble-watchface"],
   "private": true,
   "dependencies": {},
   "pebble": {
-    "displayName": "TimeStyle",
-    "uuid": "4368ffa4-f0fb-4823-90be-f754b076bdaa",
+    "displayName": "TimeStyleYlm",
+    "uuid": "4368ffa4-f0fb-4823-90be-f754b076bdab",
     "sdkVersion": "3",
     "enableMultiJS": true,
     "targetPlatforms": [
@@ -19,37 +19,42 @@
     "watchapp": {
       "watchface": true
     },
-    "messageKeys": [
-        "WeatherCondition",
-        "WeatherTemperature",
-        "WeatherForecastCondition",
-        "WeatherForecastHighTemp",
-        "WeatherForecastLowTemp",
-        "SettingAltClockName",
-        "SettingAltClockOffset",
-        "SettingDisableAutobattery",
-        "SettingBluetoothVibe",
-        "SettingClockFontId",
-        "SettingColorBG",
-        "SettingColorSidebar",
-        "SettingColorTime",
-        "SettingDecimalSep",
-        "SettingDisableWeather",
-        "SettingHealthUseDistance",
-        "SettingHealthUseRestfulSleep",
-        "SettingHourlyVibe",
-        "SettingLanguageID",
-        "SettingShowBatteryPct",
-        "SettingShowLeadingZero",
-        "SettingSidebarOnLeft",
-        "SettingSidebarTextColor",
-        "SettingUseLargeFonts",
-        "SettingUseMetric",
-        "WeatherUseNightIcon",
-        "SettingWidget0ID",
-        "SettingWidget1ID",
-        "SettingWidget2ID"
+    "capabilities": [
+      "location",
+      "health",
+      "configurable"
     ],
+    "messageKeys": {
+      "KEY_TEMPERATURE": 3,
+      "KEY_SETTING_HOURLY_VIBE": 19,
+      "KEY_SETTING_DECIMAL_SEPARATOR": 30,
+      "KEY_SETTING_SHOW_BATTERY_PCT": 16,
+      "KEY_SETTING_DISABLE_AUTOBATTERY": 33,
+      "KEY_SETTING_COLOR_SIDEBAR": 8,
+      "KEY_FORECAST_CONDITION": 25,
+      "KEY_FORECAST_TEMP_HIGH": 26,
+      "KEY_SETTING_SIDEBAR_TEXT_COLOR": 12,
+      "KEY_WIDGET_1_ID": 23,
+      "KEY_SETTING_SIDEBAR_LEFT": 9,
+      "KEY_SETTING_ALTCLOCK_NAME": 28,
+      "KEY_SETTING_COLOR_BG": 7,
+      "KEY_CONDITION_CODE": 4,
+      "KEY_WIDGET_0_ID": 22,
+      "KEY_SETTING_COLOR_TIME": 6,
+      "KEY_SETTING_LANGUAGE_ID": 13,
+      "KEY_FORECAST_TEMP_LOW": 27,
+      "KEY_USE_NIGHT_ICON": 5,
+      "KEY_SETTING_CLOCK_FONT_ID": 18,
+      "KEY_SETTING_BT_VIBE": 11,
+      "KEY_SETTING_HEALTH_USE_RESTFUL_SLEEP": 32,
+      "KEY_SETTING_SHOW_LEADING_ZERO": 15,
+      "KEY_SETTING_USE_LARGE_FONTS": 21,
+      "KEY_WIDGET_2_ID": 24,
+      "KEY_SETTING_USE_METRIC": 10,
+      "KEY_SETTING_DISABLE_WEATHER": 17,
+      "KEY_SETTING_ALTCLOCK_OFFSET": 29,
+      "KEY_SETTING_HEALTH_USE_DISTANCE": 31
+    },
     "resources": {
         "media": [
             {
@@ -209,49 +214,49 @@
                 "type": "bitmap"
             },
             {
-                "file": "data/WEATHER_GENERIC.pdc",
+                "file": "images/weather/CLEAR_DAY.png",
                 "name": "WEATHER_GENERIC",
-                "type": "raw"
+                "type": "bitmap"
             },
             {
-                "file": "data/THUNDERSTORM.pdc",
+                "file": "images/weather/CLEAR_DAY.png",
                 "name": "WEATHER_THUNDERSTORM",
-                "type": "raw"
+                "type": "bitmap"
             },
             {
-                "file": "data/RAINING_AND_SNOWING.pdc",
+                "file": "images/weather/SLEET.png",
                 "name": "WEATHER_RAINING_AND_SNOWING",
-                "type": "raw"
+                "type": "bitmap"
             },
             {
-                "file": "data/PARTLY_CLOUDY_NIGHT.pdc",
+                "file": "images/weather/PARTLY_CLOUDY_NIGHT.png",
                 "name": "WEATHER_PARTLY_CLOUDY_NIGHT",
-                "type": "raw"
+                "type": "bitmap"
             },
             {
-                "file": "data/PARTLY_CLOUDY.pdc",
+                "file": "images/weather/PARTLY_CLOUDY.png",
                 "name": "WEATHER_PARTLY_CLOUDY",
-                "type": "raw"
+                "type": "bitmap"
             },
             {
-                "file": "data/LIGHT_SNOW.pdc",
+                "file": "images/weather/LIGHT_SNOW.png",
                 "name": "WEATHER_LIGHT_SNOW",
-                "type": "raw"
+                "type": "bitmap"
             },
             {
-                "file": "data/LIGHT_RAIN.pdc",
+                "file": "images/weather/LIGHT_RAIN.png",
                 "name": "WEATHER_LIGHT_RAIN",
-                "type": "raw"
+                "type": "bitmap"
             },
             {
-                "file": "data/HEAVY_SNOW.pdc",
+                "file": "images/weather/HEAVY_SNOW.png",
                 "name": "WEATHER_HEAVY_SNOW",
-                "type": "raw"
+                "type": "bitmap"
             },
             {
-                "file": "data/HEAVY_RAIN.pdc",
+                "file": "images/weather/HEAVY_RAIN.png",
                 "name": "WEATHER_HEAVY_RAIN",
-                "type": "raw"
+                "type": "bitmap"
             },
             {
                 "file": "data/DISCONNECTED.pdc",
@@ -264,20 +269,31 @@
                 "type": "raw"
             },
             {
-                "file": "data/CLOUDY_DAY.pdc",
+                "file": "images/weather/CLOUDY.png",
                 "name": "WEATHER_CLOUDY",
-                "type": "raw"
+                "type": "bitmap"
             },
             {
-                "file": "data/CLEAR_NIGHT.pdc",
+                "file": "images/weather/CLEAR_NIGHT.png",
                 "name": "WEATHER_CLEAR_NIGHT",
-                "type": "raw"
+                "type": "bitmap"
             },
             {
-                "file": "data/CLEAR_DAY.pdc",
+                "file": "images/weather/CLEAR_DAY.png",
                 "name": "WEATHER_CLEAR_DAY",
-                "type": "raw"
+                "type": "bitmap"
             },
+             {
+                "file": "images/weather/HAZE.png",
+                "name": "WEATHER_HAZE",
+                "type": "bitmap"
+            },
+             {
+                "file": "images/weather/FOG.png",
+                "name": "WEATHER_FOG",
+                "type": "bitmap"
+            },
+
             {
                 "file": "data/BATTERY_CHARGE.pdc",
                 "name": "BATTERY_CHARGE",
@@ -297,6 +313,11 @@
                 "file": "data/HEALTH_STEPS.pdc",
                 "name": "HEALTH_STEPS",
                 "type": "raw"
+            },
+            {
+                "type": "font",
+                "name": "FONT_KEY_MONACO_15",
+                "file": "fonts/LECO.ttf"
             }
         ]
     }

@@ -1,8 +1,7 @@
 /* general utility stuff related to weather */
 
 var weatherProviders = {
-  'owm'          : require('./weather_owm'),
-  // 'forecast'     : require('weather_forecast'),
+  'owm'          : require('./caiyun'),
   'wunderground' : require('./weather_wunderground')
 };
 
@@ -26,7 +25,9 @@ var WeatherIcons = {
   PARTLY_CLOUDY       : 8,
   RAINING_AND_SNOWING : 9,
   THUNDERSTORM        : 10,
-  WEATHER_GENERIC     : 11
+  FOG                 : 11,
+  HAZE                : 12,
+  WEATHER_GENERIC     : 13
 };
 
 
@@ -123,7 +124,7 @@ function locationSuccess(pos) {
 }
 
 function isForecastNeeded() {
-  var enableForecast = window.localStorage.getItem('enable_forecast');
+  var enableForecast = 'yes';
   var lastForecastTime = window.localStorage.getItem('last_forecast_time');
   var forecastAge = Date.now() - lastForecastTime;
 

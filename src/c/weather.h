@@ -28,14 +28,16 @@ typedef enum {
   PARTLY_CLOUDY       = 8,
   RAINING_AND_SNOWING = 9,
   THUNDERSTORM        = 10,
-  WEATHER_GENERIC     = 11
+  FOG                 =11,
+  HAZE                =12,
+  WEATHER_GENERIC     = 13
 } WeatherCondition;
 
 extern WeatherInfo Weather_weatherInfo;
 extern WeatherForecastInfo Weather_weatherForecast;
 
-extern GDrawCommandImage* Weather_currentWeatherIcon;
-extern GDrawCommandImage* Weather_forecastWeatherIcon;
+extern GBitmap* Weather_currentWeatherIcon;
+extern GBitmap* Weather_forecastWeatherIcon;
 
 
 void Weather_setCurrentCondition(int conditionCode);
